@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Kitchen — 5 вариантов дизайна</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Manrope',sans-serif;background:#0A0A0A;color:#FFF;padding:60px 24px}
+h1{font-size:40px;font-weight:800;text-align:center;margin-bottom:8px}
+.sub{text-align:center;color:#888;margin-bottom:48px;font-size:16px}
+.grid{max-width:900px;margin:0 auto;display:flex;flex-direction:column;gap:16px}
+.card{display:flex;border-radius:12px;overflow:hidden;border:1px solid #222;transition:all 0.3s;cursor:pointer;text-decoration:none;color:#fff}
+.card:hover{border-color:#444;box-shadow:0 8px 32px rgba(0,0,0,0.5);transform:translateY(-2px)}
+.card-num{width:80px;background:#111;display:flex;align-items:center;justify-content:center;font-size:32px;font-weight:800;color:#E31E24;flex-shrink:0}
+.card-info{padding:20px;flex:1}
+.card-info h3{font-size:18px;margin-bottom:4px}
+.card-info p{font-size:14px;color:#888;line-height:1.5}
+</style>
+</head>
+<body>
+<h1>The Kitchen — Дизайн</h1>
+<p class="sub">5 вариантов layout. Одни цвета, разная структура.</p>
+<div class="grid">
+  <a href="01-split-hero.html" class="card">
+    <div class="card-num">01</div>
+    <div class="card-info">
+      <h3>Классический split</h3>
+      <p>Текст слева, большое фото справа. Проверенная структура.</p>
+    </div>
+  </a>
+  <a href="02-fullscreen-hero.html" class="card">
+    <div class="card-num">02</div>
+    <div class="card-info">
+      <h3>Фото во весь экран</h3>
+      <p>Полноэкранное фото кухни, текст поверх с затемнением</p>
+    </div>
+  </a>
+  <a href="03-centered-scroll.html" class="card">
+    <div class="card-num">03</div>
+    <div class="card-info">
+      <h3>Центрированный + скролл</h3>
+      <p>Текст по центру, каталог горизонтальным скроллом, преимущества иконками</p>
+    </div>
+  </a>
+  <a href="04-featured-product.html" class="card">
+    <div class="card-num">04</div>
+    <div class="card-info">
+      <h3>Кухня-герой</h3>
+      <p>Одна кухня крупно как hero, остальные ниже сеткой. Акцент на продукте.</p>
+    </div>
+  </a>
+  <a href="05-hero-with-form.html" class="card">
+    <div class="card-num">05</div>
+    <div class="card-info">
+      <h3>Hero + форма</h3>
+      <p>Текст слева, форма заявки встроена прямо в hero. Максимум конверсии.</p>
+    </div>
+  </a>
+</div></body></html>

@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Kitchen — Дизайн по мотивам Мария</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --red:#E31E24;--red-hover:#C4191E;--red-light:#FEF2F2;
+  --black:#1E1E1C;--g900:#2D2D2B;--g700:#555;--g500:#8C8C8A;--g300:#C4C4C2;--g100:#F5F5F3;--white:#FFF;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;-webkit-font-smoothing:antialiased;scroll-behavior:smooth}
+body{font-family:'Manrope',sans-serif;color:var(--black);background:var(--white)}
+img{max-width:100%;display:block}
+a{text-decoration:none;color:inherit}
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
+
+/* ====== TOP BAR ====== */
+.topbar{background:var(--g100);padding:8px 0;font-size:12px;color:var(--g700)}
+.topbar-inner{display:flex;justify-content:space-between;align-items:center}
+.topbar a{color:var(--g700);margin-left:20px;font-weight:500}
+.topbar a:hover{color:var(--red)}
+
+/* ====== HEADER ====== */
+.header{background:var(--white);padding:16px 0;position:sticky;top:0;z-index:1000;border-bottom:1px solid var(--g100);transition:box-shadow 0.3s}
+.header.scrolled{box-shadow:0 2px 20px rgba(0,0,0,0.06)}
+.header-inner{display:flex;align-items:center;justify-content:space-between;gap:32px}
+.logo{font-size:22px;font-weight:800;color:var(--black);letter-spacing:-0.02em;white-space:nowrap}
+.logo span{color:var(--red)}
+.main-nav{display:flex;gap:28px;list-style:none}
+.main-nav a{font-size:14px;font-weight:600;color:var(--black);padding:8px 0;position:relative;transition:color 0.2s}
+.main-nav a:hover{color:var(--red)}
+.main-nav a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:2px;background:var(--red);transition:width 0.3s}
+.main-nav a:hover::after{width:100%}
+.header-right{display:flex;align-items:center;gap:16px}
+.header-phone{font-size:16px;font-weight:700;color:var(--black);white-space:nowrap}
+.btn-red{background:var(--red);color:#fff;padding:12px 24px;border:none;border-radius:8px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;transition:all 0.25s;display:inline-flex;align-items:center;gap:8px}
+.btn-red:hover{background:var(--red-hover);transform:translateY(-1px);box-shadow:0 4px 12px rgba(227,30,36,0.3)}
+.btn-outline{background:transparent;color:var(--black);padding:12px 24px;border:2px solid var(--g300);border-radius:8px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;transition:all 0.25s}
+.btn-outline:hover{border-color:var(--g700);background:var(--g100)}
+
+/* ====== HERO ====== */
+.hero{padding:64px 0 80px}
+.hero-grid{display:grid;grid-template-columns:1fr 1.3fr;gap:48px;align-items:center}
+.hero-text h1{font-size:44px;font-weight:800;line-height:1.1;letter-spacing:-0.02em;margin-bottom:16px}
+.hero-text h1 .accent{color:var(--red)}
+.hero-text .sub{font-size:17px;color:var(--g700);line-height:1.6;margin-bottom:16px}
+.hero-text .promo-tag{display:inline-flex;align-items:center;gap:8px;background:var(--red-light);color:var(--red);font-size:14px;font-weight:700;padding:8px 16px;border-radius:8px;margin-bottom:24px}
+.hero-text .promo-tag svg{width:16px;height:16px;fill:var(--red)}
+.hero-btns{display:flex;gap:12px}
+
+/* Hero slider */
+.hero-slider{position:relative;border-radius:16px;overflow:hidden;background:var(--g100)}
+.hero-slide{aspect-ratio:16/10;display:flex;align-items:center;justify-content:center;color:var(--g500);font-size:14px;position:relative}
+.hero-slide-info{position:absolute;bottom:0;left:0;right:0;padding:24px 28px;background:linear-gradient(0deg,rgba(0,0,0,0.7) 0%,transparent 100%);color:#fff}
+.hero-slide-info .model{font-size:20px;font-weight:700;margin-bottom:2px}
+.hero-slide-info .model-sub{font-size:13px;opacity:0.7}
+.slider-dots{display:flex;gap:8px;justify-content:center;margin-top:16px}
+.slider-dot{width:8px;height:8px;border-radius:50%;background:var(--g300);cursor:pointer;transition:all 0.3s}
+.slider-dot.active{background:var(--red);width:24px;border-radius:4px}
+
+/* ====== ADVANTAGES ====== */
+.advantages{padding:64px 0;border-top:1px solid var(--g100)}
+.adv-grid{display:grid;grid-template-columns:280px 1fr;gap:48px;align-items:start}
+.adv-left h2{font-size:28px;font-weight:800;line-height:1.2;margin-bottom:12px}
+.adv-left p{font-size:14px;color:var(--g700);line-height:1.6}
+.adv-left .photo{margin-top:20px;height:180px;border-radius:12px}
+.adv-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.adv-card{padding:24px;border:1px solid var(--g100);border-radius:12px;transition:all 0.25s}
+.adv-card:hover{border-color:var(--g300);box-shadow:0 4px 16px rgba(0,0,0,0.04)}
+.adv-icon{width:40px;height:40px;border-radius:10px;background:var(--red-light);display:flex;align-items:center;justify-content:center;margin-bottom:12px;color:var(--red);font-size:16px;font-weight:800}
+.adv-card h3{font-size:15px;font-weight:700;margin-bottom:6px}
+.adv-card p{font-size:13px;color:var(--g700);line-height:1.5}
+
+/* ====== ACTIONS ====== */
+.actions{padding:64px 0;background:var(--g100)}
+.actions h2{font-size:28px;font-weight:800;margin-bottom:8px}
+.actions .section-sub{font-size:15px;color:var(--g700);margin-bottom:32px}
+.actions-scroll{display:flex;gap:16px;overflow-x:auto;padding-bottom:16px;scroll-snap-type:x mandatory}
+.actions-scroll::-webkit-scrollbar{height:4px}
+.actions-scroll::-webkit-scrollbar-thumb{background:var(--g300);border-radius:2px}
+.action-card{min-width:280px;flex-shrink:0;background:var(--white);border-radius:12px;padding:24px;scroll-snap-align:start;border:1px solid transparent;transition:all 0.25s}
+.action-card:hover{border-color:var(--red);box-shadow:0 4px 16px rgba(227,30,36,0.08)}
+.action-tag{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:var(--red);margin-bottom:8px}
+.action-card h3{font-size:17px;font-weight:700;margin-bottom:8px}
+.action-card p{font-size:13px;color:var(--g700);line-height:1.5;margin-bottom:16px}
+.action-card .btn-sm{font-size:13px;padding:8px 16px;border-radius:6px;background:var(--red);color:#fff;border:none;cursor:pointer;font-family:inherit;font-weight:600}
+
+/* ====== CATALOG ====== */
+.catalog{padding:64px 0}
+.catalog-header{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:32px}
+.catalog-header h2{font-size:28px;font-weight:800}
+.catalog-tabs{display:flex;gap:8px}
+.tab{padding:8px 16px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;border:1px solid var(--g300);background:transparent;font-family:inherit;transition:all 0.2s}
+.tab:hover,.tab.active{background:var(--black);color:#fff;border-color:var(--black)}
+.catalog-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.p-card{border:1px solid var(--g100);border-radius:12px;overflow:hidden;transition:all 0.3s}
+.p-card:hover{box-shadow:0 8px 24px rgba(0,0,0,0.08);transform:translateY(-3px)}
+.p-img{height:200px;position:relative;background:var(--g100);display:flex;align-items:center;justify-content:center;color:var(--g500);font-size:13px}
+.p-badge{position:absolute;top:10px;left:10px;background:var(--red);color:#fff;font-size:11px;font-weight:700;padding:4px 8px;border-radius:4px}
+.p-fav{position:absolute;top:10px;right:10px;width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,0.9);display:flex;align-items:center;justify-content:center;cursor:pointer;border:none;color:var(--g500);font-size:14px}
+.p-body{padding:14px}
+.p-title{font-size:15px;font-weight:700;margin-bottom:2px}
+.p-cat{font-size:11px;color:var(--g500);margin-bottom:8px}
+.p-price-row{display:flex;align-items:baseline;gap:6px;margin-bottom:12px}
+.p-price{font-size:18px;font-weight:800}
+.p-old{font-size:12px;color:var(--g500);text-decoration:line-through}
+.p-btns{display:flex;gap:6px}
+.p-btns button{flex:1;padding:8px;font-size:12px;font-weight:600;border-radius:6px;cursor:pointer;font-family:inherit;transition:all 0.2s}
+.p-btn-primary{background:var(--red);color:#fff;border:none}
+.p-btn-primary:hover{background:var(--red-hover)}
+.p-btn-ghost{background:transparent;color:var(--black);border:1px solid var(--g300)}
+.p-btn-ghost:hover{border-color:var(--g700)}
+
+/* ====== PORTFOLIO ====== */
+.portfolio{padding:64px 0;background:var(--g100)}
+.portfolio-header{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:32px}
+.portfolio-header h2{font-size:28px;font-weight:800}
+.portfolio-header .count{font-size:14px;color:var(--g500)}
+.portfolio-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.port-card{border-radius:12px;overflow:hidden;background:var(--white);transition:all 0.3s}
+.port-card:hover{box-shadow:0 8px 24px rgba(0,0,0,0.08);transform:translateY(-3px)}
+.port-img{height:180px;background:var(--g100);display:flex;align-items:center;justify-content:center;color:var(--g500);font-size:13px}
+.port-body{padding:14px}
+.port-title{font-size:14px;font-weight:700;margin-bottom:2px}
+.port-meta{font-size:12px;color:var(--g500)}
+
+/* ====== CTA SECTION ====== */
+.cta-section{padding:80px 0}
+.cta-card{background:var(--black);border-radius:20px;padding:64px;display:grid;grid-template-columns:1fr 380px;gap:48px;align-items:center}
+.cta-card h2{font-size:32px;font-weight:800;color:#fff;line-height:1.2;margin-bottom:12px}
+.cta-card p{font-size:16px;color:var(--g500);line-height:1.6;margin-bottom:24px}
+.cta-stats{display:flex;gap:32px}
+.cta-stat .num{font-size:28px;font-weight:800;color:var(--red)}
+.cta-stat .label{font-size:12px;color:var(--g500);margin-top:2px}
+.cta-form{background:var(--white);border-radius:16px;padding:32px}
+.cta-form h3{font-size:18px;font-weight:700;margin-bottom:4px;text-align:center}
+.cta-form .form-sub{font-size:13px;color:var(--g500);text-align:center;margin-bottom:20px}
+.field{margin-bottom:12px}
+.field label{display:block;font-size:13px;font-weight:600;margin-bottom:4px}
+.field input{width:100%;padding:12px 16px;border:2px solid var(--g300);border-radius:8px;font-size:15px;font-family:inherit;transition:border-color 0.2s}
+.field input:focus{outline:none;border-color:var(--red)}
+.field input::placeholder{color:var(--g500)}
+.submit-btn{width:100%;padding:14px;margin-top:4px}
+.form-note{font-size:11px;color:var(--g500);text-align:center;margin-top:10px}
+.form-note a{color:var(--red)}
+
+/* ====== FOOTER ====== */
+.footer{background:var(--black);padding:48px 0 24px;color:var(--g500)}
+.footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:32px;margin-bottom:40px}
+.footer-col h4{color:var(--white);font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:16px}
+.footer-col a{display:block;font-size:13px;color:var(--g500);margin-bottom:8px;transition:color 0.2s}
+.footer-col a:hover{color:var(--white)}
+.footer-brand{font-size:20px;font-weight:800;color:var(--white);margin-bottom:12px}
+.footer-brand span{color:var(--red)}
+.footer-desc{font-size:13px;line-height:1.6;margin-bottom:16px}
+.footer-social{display:flex;gap:12px}
+.footer-social a{width:36px;height:36px;border-radius:8px;background:var(--g900);display:flex;align-items:center;justify-content:center;color:var(--g500);transition:all 0.2s;font-size:12px;font-weight:700}
+.footer-social a:hover{background:var(--red);color:#fff}
+.footer-bottom{border-top:1px solid var(--g900);padding-top:20px;display:flex;justify-content:space-between;font-size:12px}
+
+/* ====== RESPONSIVE ====== */
+@media(max-width:1024px){
+  .hero-grid{grid-template-columns:1fr}
+  .hero-slider{display:none}
+  .adv-grid{grid-template-columns:1fr}
+  .adv-left .photo{display:none}
+  .catalog-grid{grid-template-columns:repeat(2,1fr)}
+  .portfolio-grid{grid-template-columns:repeat(2,1fr)}
+  .cta-card{grid-template-columns:1fr;padding:40px}
+  .footer-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:640px){
+  .topbar{display:none}
+  .main-nav{display:none}
+  .hero-text h1{font-size:32px}
+  .adv-cards{grid-template-columns:1fr}
+  .catalog-grid{grid-template-columns:1fr}
+  .portfolio-grid{grid-template-columns:1fr}
+  .cta-card{padding:24px}
+  .footer-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- ====== TOP BAR ====== -->
+<div class="topbar">
+  <div class="container topbar-inner">
+    <span>Москва и МО</span>
+    <div>
+      <a href="#">Производство</a>
+      <a href="#">Сертификаты</a>
+      <a href="#">Контакты</a>
+    </div>
+  </div>
+</div>
+
+<!-- ====== HEADER ====== -->
+<header class="header" id="header">
+  <div class="container header-inner">
+    <a href="#" class="logo">The<span>.</span>Kitchen</a>
+    <nav>
+      <ul class="main-nav">
+        <li><a href="#">Каталог</a></li>
+        <li><a href="#">Производство</a></li>
+        <li><a href="#">Материалы</a></li>
+        <li><a href="#">О нас</a></li>
+        <li><a href="#">Акции</a></li>
+        <li><a href="#">Сервис</a></li>
+      </ul>
+    </nav>
+    <div class="header-right">
+      <a href="tel:+74950670566" class="header-phone">8 (495) 067-05-66</a>
+      <button class="btn-red">Рассчитать стоимость</button>
+    </div>
+  </div>
+</header>
+
+<!-- ====== HERO ====== -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-grid">
+      <div class="hero-text">
+        <h1>Кухни на заказ<br>от <span class="accent">60 000 ₽</span></h1>
+        <p class="sub">Собственное производство в Москве. Изготовление от 14 дней. Бесплатный 3D-проект за 24 часа.</p>
+        <div class="promo-tag">
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          Столешница + мойка + смеситель в подарок
+        </div>
+        <div class="hero-btns">
+          <button class="btn-red" style="padding:14px 28px;font-size:15px">Рассчитать стоимость</button>
+          <button class="btn-outline" style="padding:14px 28px;font-size:15px">Получить 3D-проект</button>
+        </div>
+      </div>
+      <div class="hero-slider">
+        <div class="hero-slide photo" style="aspect-ratio:16/10">
+          <div class="hero-slide-info">
+            <div class="model">Кухня «Оливия»</div>
+            <div class="model-sub">Угловая / МДФ ПВХ / от 99 500 ₽</div>
+          </div>
+          Фото кухни «Оливия»
+        </div>
+        <div class="slider-dots">
+          <div class="slider-dot active"></div>
+          <div class="slider-dot"></div>
+          <div class="slider-dot"></div>
+          <div class="slider-dot"></div>
+          <div class="slider-dot"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== ADVANTAGES ====== -->
+<section class="advantages">
+  <div class="container">
+    <div class="adv-grid">
+      <div class="adv-left">
+        <h2>Почему<br>выбирают нас</h2>
+        <p>Фабрика кухонь с собственным производством в Москве</p>
+        <div class="photo">Фото производства</div>
+      </div>
+      <div class="adv-cards">
+        <div class="adv-card">
+          <div class="adv-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          </div>
+          <h3>Своё производство</h3>
+          <p>Фабрика в Москве. Без посредников и наценок.</p>
+        </div>
+        <div class="adv-card">
+          <div class="adv-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <h3>От 14 дней</h3>
+          <p>Быстрое изготовление. Материалы всегда на складе.</p>
+        </div>
+        <div class="adv-card">
+          <div class="adv-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <h3>20+ лет опыта</h3>
+          <p>Знаем все нюансы — от замера до установки.</p>
+        </div>
+        <div class="adv-card">
+          <div class="adv-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          </div>
+          <h3>3D-проект бесплатно</h3>
+          <p>Дизайнер приедет с образцами. Без обязательств.</p>
+        </div>
+        <div class="adv-card">
+          <div class="adv-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+          </div>
+          <h3>Рассрочка 0%</h3>
+          <p>До 12 месяцев без переплат. 8+ банков-партнёров.</p>
+        </div>
+        <div class="adv-card">
+          <div class="adv-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+          </div>
+          <h3>Гарантия 2 года</h3>
+          <p>Официальная гарантия на изделия и монтаж.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== ACTIONS ====== -->
+<section class="actions">
+  <div class="container">
+    <h2>Покупка ещё выгоднее</h2>
+    <p class="section-sub">Актуальные акции и спецпредложения</p>
+    <div class="actions-scroll">
+      <div class="action-card">
+        <div class="action-tag">Подарок</div>
+        <h3>Столешница + мойка + смеситель</h3>
+        <p>При заказе кухни до конца месяца — комплект в подарок</p>
+        <button class="btn-sm">Получить подарок</button>
+      </div>
+      <div class="action-card">
+        <div class="action-tag">Скидка</div>
+        <h3>-10% молодым семьям</h3>
+        <p>Скидка для молодых семей, новосёлов и пенсионеров</p>
+        <button class="btn-sm">Узнать подробнее</button>
+      </div>
+      <div class="action-card">
+        <div class="action-tag">Рассрочка</div>
+        <h3>0% до 12 месяцев</h3>
+        <p>Оформление рассрочки за 30 минут не выходя из дома</p>
+        <button class="btn-sm">Рассчитать платёж</button>
+      </div>
+      <div class="action-card">
+        <div class="action-tag">Выезд</div>
+        <h3>Бесплатный замер</h3>
+        <p>Дизайнер приедет с 50+ образцами материалов. 3D-проект за 24 часа</p>
+        <button class="btn-sm">Записаться</button>
+      </div>
+      <div class="action-card">
+        <div class="action-tag">Скидка</div>
+        <h3>-10% в день замера</h3>
+        <p>Подписание договора в день выезда дизайнера — скидка 10%</p>
+        <button class="btn-sm">Получить скидку</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== CATALOG ====== -->
+<section class="catalog">
+  <div class="container">
+    <div class="catalog-header">
+      <h2>Каталог кухонь</h2>
+      <div class="catalog-tabs">
+        <button class="tab active">Все</button>
+        <button class="tab">Угловые</button>
+        <button class="tab">Прямые</button>
+        <button class="tab">С островом</button>
+      </div>
+    </div>
+    <div class="catalog-grid">
+      <div class="p-card">
+        <div class="p-img"><div class="p-badge">-52%</div><button class="p-fav">&#9825;</button>Фото</div>
+        <div class="p-body"><div class="p-title">Кухня «Оливия»</div><div class="p-cat">Угловая / МДФ ПВХ</div><div class="p-price-row"><span class="p-price">99 500 ₽</span><span class="p-old">138 060 ₽</span></div><div class="p-btns"><button class="p-btn-primary">Рассчитать</button><button class="p-btn-ghost">Подробнее</button></div></div>
+      </div>
+      <div class="p-card">
+        <div class="p-img"><div class="p-badge">-37%</div><button class="p-fav">&#9825;</button>Фото</div>
+        <div class="p-body"><div class="p-title">Кухня «Граф»</div><div class="p-cat">Прямая / ЛДСП</div><div class="p-price-row"><span class="p-price">79 600 ₽</span><span class="p-old">126 345 ₽</span></div><div class="p-btns"><button class="p-btn-primary">Рассчитать</button><button class="p-btn-ghost">Подробнее</button></div></div>
+      </div>
+      <div class="p-card">
+        <div class="p-img"><button class="p-fav">&#9825;</button>Фото</div>
+        <div class="p-body"><div class="p-title">Кухня «Эмилия»</div><div class="p-cat">С островом / МДФ</div><div class="p-price-row"><span class="p-price">69 990 ₽</span></div><div class="p-btns"><button class="p-btn-primary">Рассчитать</button><button class="p-btn-ghost">Подробнее</button></div></div>
+      </div>
+      <div class="p-card">
+        <div class="p-img"><div class="p-badge">-48%</div><button class="p-fav">&#9825;</button>Фото</div>
+        <div class="p-body"><div class="p-title">Кухня «Бергамо»</div><div class="p-cat">Прямая / МДФ ПВХ</div><div class="p-price-row"><span class="p-price">84 500 ₽</span><span class="p-old">162 500 ₽</span></div><div class="p-btns"><button class="p-btn-primary">Рассчитать</button><button class="p-btn-ghost">Подробнее</button></div></div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:32px">
+      <button class="btn-outline">Смотреть все 84 модели →</button>
+    </div>
+  </div>
+</section>
+
+<!-- ====== PORTFOLIO ====== -->
+<section class="portfolio">
+  <div class="container">
+    <div class="portfolio-header">
+      <h2>Наши работы</h2>
+      <span class="count">Более 3 000 реализованных проектов</span>
+    </div>
+    <div class="portfolio-grid">
+      <div class="port-card"><div class="port-img">Фото проекта 1</div><div class="port-body"><div class="port-title">Кухня в ЖК «Царская площадь»</div><div class="port-meta">Угловая / МДФ эмаль / 180 000 ₽</div></div></div>
+      <div class="port-card"><div class="port-img">Фото проекта 2</div><div class="port-body"><div class="port-title">Кухня в ЖК «Саларьево парк»</div><div class="port-meta">Прямая / ЛДСП / 95 000 ₽</div></div></div>
+      <div class="port-card"><div class="port-img">Фото проекта 3</div><div class="port-body"><div class="port-title">Кухня в ЖК «Фили Град»</div><div class="port-meta">Угловая / МДФ ПВХ / 145 000 ₽</div></div></div>
+      <div class="port-card"><div class="port-img">Фото проекта 4</div><div class="port-body"><div class="port-title">Кухня в доме, Королёв</div><div class="port-meta">П-образная / эмаль / 260 000 ₽</div></div></div>
+    </div>
+    <div style="text-align:center;margin-top:32px">
+      <button class="btn-outline">Смотреть все проекты →</button>
+    </div>
+  </div>
+</section>
+
+<!-- ====== CTA ====== -->
+<section class="cta-section">
+  <div class="container">
+    <div class="cta-card">
+      <div>
+        <h2>Получите бесплатный<br>3D-проект кухни</h2>
+        <p>Дизайнер приедет к вам, покажет образцы материалов, сделает замер и подготовит 3D-проект с точной стоимостью.</p>
+        <div class="cta-stats">
+          <div class="cta-stat"><div class="num">50+</div><div class="label">образцов материалов</div></div>
+          <div class="cta-stat"><div class="num">24ч</div><div class="label">готовый 3D-проект</div></div>
+          <div class="cta-stat"><div class="num">0 ₽</div><div class="label">стоимость услуги</div></div>
+        </div>
+      </div>
+      <div class="cta-form">
+        <h3>Записаться на выезд</h3>
+        <p class="form-sub">Бесплатно и без обязательств</p>
+        <div class="field"><label>Ваше имя</label><input type="text" placeholder="Иван"></div>
+        <div class="field"><label>Телефон</label><input type="tel" placeholder="+7 (___) ___-__-__"></div>
+        <button class="btn-red submit-btn">Записаться бесплатно</button>
+        <p class="form-note">Нажимая кнопку, вы соглашаетесь с <a href="#">политикой конфиденциальности</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== FOOTER ====== -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <div class="footer-brand">The<span>.</span>Kitchen</div>
+        <p class="footer-desc">Фабрика кухонь на заказ в Москве.<br>Собственное производство. Опыт 20+ лет.</p>
+        <div class="footer-social">
+          <a href="#">TG</a>
+          <a href="#">VK</a>
+          <a href="#">WA</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Каталог</h4>
+        <a href="#">Угловые кухни</a>
+        <a href="#">Прямые кухни</a>
+        <a href="#">Кухни с островом</a>
+        <a href="#">Все 84 модели</a>
+      </div>
+      <div class="footer-col">
+        <h4>Компания</h4>
+        <a href="#">Производство</a>
+        <a href="#">Материалы</a>
+        <a href="#">О нас</a>
+        <a href="#">Акции</a>
+        <a href="#">Служба сервиса</a>
+      </div>
+      <div class="footer-col">
+        <h4>Контакты</h4>
+        <a href="tel:+74950670566" style="color:var(--white);font-weight:700">8 (495) 067-05-66</a>
+        <a href="#">109316, г. Москва,<br>пр-кт Волгоградский, д. 47</a>
+        <a href="#" style="margin-top:8px">Пн-Вс: 09:00-21:00</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 ООО «Мебельная Фабрика Китчен»</span>
+      <a href="#" style="color:var(--g700)">Политика конфиденциальности</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Sticky header shadow
+window.addEventListener('scroll', () => {
+  document.getElementById('header').classList.toggle('scrolled', window.scrollY > 10);
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Kitchen — Вариант 3: Центрированный + скролл</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+
+:root {
+  --red: #E31E24;
+  --red-hover: #C4191E;
+  --red-light: #F6E0E1;
+  --black: #1E1E1C;
+  --gray-900: #2D2D2B;
+  --gray-700: #555553;
+  --gray-500: #8C8C8A;
+  --gray-300: #C4C4C2;
+  --gray-100: #F0F0EE;
+  --white: #FFFFFF;
+}
+* { box-sizing:border-box; margin:0; padding:0; }
+html { font-size:16px; -webkit-font-smoothing:antialiased; }
+body { font-family:'Manrope',sans-serif; color:var(--black); background:var(--white); }
+img { max-width:100%; display:block; }
+a { text-decoration:none; color:inherit; }
+.container { max-width:1200px; margin:0 auto; padding:0 24px; }
+
+/* Badge */
+.variant-badge {
+  position:fixed;top:0;left:0;right:0;z-index:9999;
+  background:var(--red);color:#fff;text-align:center;
+  padding:10px;font-size:14px;font-weight:700;
+}
+.variant-badge span { opacity:0.7;font-weight:400; }
+
+/* Nav */
+.nav {
+  position:fixed;top:40px;left:0;right:0;z-index:1000;
+  background:var(--black);padding:16px 0;
+}
+.nav-inner {
+  max-width:1200px;margin:0 auto;padding:0 24px;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.nav-logo { color:#fff;font-size:20px;font-weight:800; }
+.nav-links { display:flex;gap:24px;list-style:none; }
+.nav-links a { color:#fff;font-size:14px;font-weight:600;opacity:0.8; }
+.nav-links a:hover { opacity:1; }
+.nav-right { display:flex;align-items:center;gap:16px; }
+.nav-phone { color:#fff;font-size:16px;font-weight:700; }
+.btn-red {
+  background:var(--red);color:#fff;padding:12px 24px;border:none;
+  border-radius:8px;font-size:14px;font-weight:700;cursor:pointer;
+  font-family:inherit;transition:all 0.25s;display:inline-flex;align-items:center;gap:8px;
+}
+.btn-red:hover { background:var(--red-hover);transform:translateY(-1px); }
+.btn-red-lg { padding:16px 32px;font-size:16px;border-radius:10px; }
+.btn-outline {
+  background:transparent;color:var(--black);padding:12px 24px;
+  border:2px solid var(--gray-300);border-radius:8px;font-size:14px;
+  font-weight:700;cursor:pointer;font-family:inherit;transition:all 0.25s;
+}
+.btn-outline:hover { border-color:var(--gray-700);background:var(--gray-100); }
+.btn-outline-white {
+  background:transparent;color:#fff;padding:16px 32px;
+  border:2px solid rgba(255,255,255,0.3);border-radius:10px;font-size:16px;
+  font-weight:700;cursor:pointer;font-family:inherit;transition:all 0.25s;
+}
+.btn-outline-white:hover { border-color:#fff;background:rgba(255,255,255,0.1); }
+
+/* Photo placeholder */
+.photo {
+  background:var(--gray-100);display:flex;align-items:center;justify-content:center;
+  color:var(--gray-500);font-size:14px;overflow:hidden;
+}
+.photo-dark {
+  background:var(--gray-900);color:var(--gray-700);
+}
+
+/* Badge */
+.badge {
+  position:absolute;top:12px;left:12px;background:var(--red);color:#fff;
+  font-size:12px;font-weight:700;padding:4px 10px;border-radius:6px;
+}
+
+
+.hero { padding:160px 0 80px;text-align:center; }
+.hero h1 { font-size:56px;font-weight:800;line-height:1.05;margin-bottom:16px; }
+.hero h1 .accent { color:var(--red); }
+.hero .sub { font-size:18px;color:var(--gray-700);margin:0 auto 12px;max-width:520px;line-height:1.6; }
+.hero .promo { color:var(--red);font-weight:700;margin-bottom:32px; }
+.hero-btns { display:flex;gap:12px;justify-content:center; }
+.hero-photos { display:flex;gap:16px;margin-top:48px;justify-content:center; }
+.hero-photos .photo { width:280px;height:200px;border-radius:12px;flex-shrink:0; }
+.adv { padding:48px 0;border-top:1px solid var(--gray-100);border-bottom:1px solid var(--gray-100); }
+.adv-strip { display:flex;justify-content:center;gap:48px; }
+.adv-chip { display:flex;align-items:center;gap:10px; }
+.adv-chip .dot { width:8px;height:8px;border-radius:50%;background:var(--red); }
+.adv-chip span { font-size:14px;font-weight:600; }
+.catalog { padding:64px 0; }
+.cat-head { margin-bottom:24px; }
+.cat-head h2 { font-size:32px;font-weight:800;text-align:center; }
+.cat-scroll { display:flex;gap:20px;overflow-x:auto;padding:8px 24px 24px;scroll-snap-type:x mandatory; }
+.cat-scroll::-webkit-scrollbar { height:6px; }
+.cat-scroll::-webkit-scrollbar-thumb { background:var(--gray-300);border-radius:3px; }
+.p-card { min-width:300px;flex-shrink:0;border:1px solid var(--gray-100);border-radius:12px;overflow:hidden;scroll-snap-align:start;transition:all 0.25s; }
+.p-card:hover { transform:translateY(-4px);box-shadow:0 12px 32px rgba(0,0,0,0.08); }
+.p-img { height:200px;position:relative; }
+.p-body { padding:16px; }
+.p-title { font-size:16px;font-weight:700;margin-bottom:2px; }
+.p-cat { font-size:11px;color:var(--gray-500);text-transform:uppercase;letter-spacing:0.05em;font-weight:600;margin-bottom:10px; }
+.p-price { display:flex;align-items:baseline;gap:8px;margin-bottom:14px; }
+.p-price .now { font-size:20px;font-weight:800; }
+.p-price .was { font-size:13px;color:var(--gray-500);text-decoration:line-through; }
+.p-btns { display:flex;gap:8px; }
+.p-btns .btn-red,.p-btns .btn-outline { flex:1;padding:10px;font-size:13px;justify-content:center; }
+
+</style>
+</head>
+<body>
+<div class="variant-badge">Вариант 3/5: <strong>Центрированный + скролл</strong> <span>— Текст по центру, каталог горизонтальным скроллом, преимущества иконками</span></div>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">The Kitchen</a>
+    <ul class="nav-links">
+      <li><a href="#">Каталог</a></li>
+      <li><a href="#">Производство</a></li>
+      <li><a href="#">Материалы</a></li>
+      <li><a href="#">О нас</a></li>
+      <li><a href="#">Акции</a></li>
+    </ul>
+    <div class="nav-right">
+      <a href="#" class="nav-phone">8 (495) 067-05-66</a>
+      <button class="btn-red">Рассчитать</button>
+    </div>
+  </div>
+</nav>
+
+
+<section class="hero"><div class="container">
+  <h1>Кухни на заказ<br>от <span class="accent">60 000 ₽</span></h1>
+  <p class="sub">Собственное производство в Москве. Изготовление от 14 дней. Бесплатный 3D-проект за 24 часа.</p>
+  <p class="promo">Столешница + мойка + смеситель в подарок</p>
+  <div class="hero-btns">
+    <button class="btn-red btn-red-lg">Рассчитать стоимость</button>
+    <button class="btn-outline" style="padding:16px 32px;font-size:16px">Каталог кухонь</button>
+  </div>
+  <div class="hero-photos">
+    <div class="photo">Фото 1</div><div class="photo">Фото 2</div><div class="photo">Фото 3</div>
+  </div>
+</div></section>
+
+<section class="adv"><div class="container"><div class="adv-strip">
+  <div class="adv-chip"><div class="dot"></div><span>Своё производство</span></div>
+  <div class="adv-chip"><div class="dot"></div><span>От 14 дней</span></div>
+  <div class="adv-chip"><div class="dot"></div><span>20+ лет опыта</span></div>
+  <div class="adv-chip"><div class="dot"></div><span>3D-проект бесплатно</span></div>
+  <div class="adv-chip"><div class="dot"></div><span>Рассрочка 0%</span></div>
+</div></div></section>
+
+<section class="catalog"><div class="cat-head"><h2>Каталог кухонь</h2></div>
+<div class="cat-scroll">
+  <div class="p-card"><div class="photo p-img"><div class="badge">-52%</div>Фото</div><div class="p-body"><div class="p-title">Кухня «Оливия»</div><div class="p-cat">Угловые</div><div class="p-price"><span class="now">99 500 ₽</span><span class="was">138 060 ₽</span></div><div class="p-btns"><button class="btn-red">Рассчитать</button><button class="btn-outline">Подробнее</button></div></div></div>
+  <div class="p-card"><div class="photo p-img"><div class="badge">-37%</div>Фото</div><div class="p-body"><div class="p-title">Кухня «Граф»</div><div class="p-cat">Прямые</div><div class="p-price"><span class="now">79 600 ₽</span><span class="was">126 345 ₽</span></div><div class="p-btns"><button class="btn-red">Рассчитать</button><button class="btn-outline">Подробнее</button></div></div></div>
+  <div class="p-card"><div class="photo p-img">Фото</div><div class="p-body"><div class="p-title">Кухня «Эмилия»</div><div class="p-cat">С островом</div><div class="p-price"><span class="now">69 990 ₽</span></div><div class="p-btns"><button class="btn-red">Рассчитать</button><button class="btn-outline">Подробнее</button></div></div></div>
+  <div class="p-card"><div class="photo p-img"><div class="badge">-48%</div>Фото</div><div class="p-body"><div class="p-title">Кухня «Бергамо»</div><div class="p-cat">Прямые</div><div class="p-price"><span class="now">84 500 ₽</span><span class="was">162 500 ₽</span></div><div class="p-btns"><button class="btn-red">Рассчитать</button><button class="btn-outline">Подробнее</button></div></div></div>
+  <div class="p-card"><div class="photo p-img"><div class="badge">-35%</div>Фото</div><div class="p-body"><div class="p-title">Кухня «Женева»</div><div class="p-cat">Угловые</div><div class="p-price"><span class="now">74 500 ₽</span><span class="was">135 500 ₽</span></div><div class="p-btns"><button class="btn-red">Рассчитать</button><button class="btn-outline">Подробнее</button></div></div></div>
+</div></section>
+
+</body>
+</html>
